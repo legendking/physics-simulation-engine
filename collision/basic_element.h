@@ -1,6 +1,8 @@
 #ifndef __BASICELEMENT_H
 #define __BASICELEMENT_H
 
+#include <cmath>
+
 //A defination of coordinate, a vector describe position, velosity or acceleration.
 class coordinate{
  public:
@@ -10,34 +12,40 @@ class coordinate{
   double z;
 
   coordinate(){};
-  coordinate(int,int,int){};
+  coordinate(double,double,double){};
   ~coordinate(){};
 
-  //operator overloading
-  //vector equality
-  bool operator==(coordinate);
-  //vector addition
-  coordinate operator+(coordinate);
-  //vector subtraction
-  coordinate operator-();
-  coordinate operator-(coordinate);
-  //vector scalar multiplication
-  coordinate operator*(double);
-  //vector dot product
-  double operator*(coordinate);
-  //vector cross product
-  coordinate operator^(coordinate);
-  //vector parrallel
-  bool operator||(coordinate);
-  //vector vertical
-  bool operator &&(coordinate);
-  //vector length
-  double operator&();
+
+//vector length
   double length();
-  bool ifNULL();//double-type length may not be judged whether NULL,which may lead to zero-divide error
-  //vector angle
-  double operator|(coordinate);
+  bool ifNULL();//double-type length may not be judged whether NULL, which may lead to zero-divide error
+  //vector unit
+  coordinate unit();
 }
+
+
+//operator overloading
+//vector equality
+bool operator==(const coordinate&,const coordinate&);
+//vector addition
+coordinate operator+(const coordinate&,const coordinate&);
+//vector subtraction
+  coordinate operator-(const coordinate&);
+coordinate operator-(const coordinate&,const coordinate&);
+//vector scalar multiplication
+coordinate operator*(const double&,const coordinate&);
+coordinate operator/(const coordinate&,const double&);
+coordinate operator*(const coordinate&,const double&);
+//vector dot product
+double operator**(const coordinate&,const coordinate&);
+//vector cross product
+coordinate operator*(const coordinate&,const coordinate&);
+//vector parrallel
+bool parrallel(const coordinate&,const coordinate&);
+//vector vertical
+bool vertical(const coordinate&,const coordinate&);
+//vector angle
+double angle(const coordinate&,const coordinate&);
 
 // A defination of area, a cube in 3D-system
 class area{
